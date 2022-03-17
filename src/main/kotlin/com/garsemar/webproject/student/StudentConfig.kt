@@ -3,6 +3,7 @@ package com.garsemar.webproject.student
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import javax.persistence.Id
 
 @Configuration
 class StudentConfig {
@@ -12,17 +13,17 @@ class StudentConfig {
         return CommandLineRunner {
             val maria = Student(
                 1,
-                "Maria",
+                "Marti",
                 "Garcia",
-                "maria.garcia@gmail.com",
+                "martia.garcia@gmail.com",
                 Student.Gender.MALE
             )
             val alex = Student(
                 2,
-                "Alex",
+                "Laura",
                 "Serra",
-                "alex.serra@gmail.com",
-                Student.Gender.MALE
+                "laura.serra@gmail.com",
+                Student.Gender.FEMALE
             )
             repository.saveAll(
                 listOf(maria, alex)

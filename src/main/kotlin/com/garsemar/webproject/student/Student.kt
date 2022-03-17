@@ -1,7 +1,7 @@
 package com.garsemar.webproject.student
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.jetbrains.annotations.NotNull
+import org.jetbrains.annotations.*
 import javax.persistence.*
 
 @Entity
@@ -17,16 +17,16 @@ class Student(
         strategy = GenerationType.SEQUENCE,
         generator = "student_sequence"
     )
-    @param:JsonProperty("studentId") val studentId: Int,
-    @field:NotBlank @param:JsonProperty("firstName") val firstName: String,
-    @field:NotBlank @param:JsonProperty("lastName") val lastName: String,
-    @field:NotBlank @param:JsonProperty("email") val email: String,
+    @param:JsonProperty("studentId") val id: Int,
+    @field:NotNull @param:JsonProperty("firstName") val firstName: String,
+    @field:NotNull @param:JsonProperty("lastName") val lastName: String,
+    @field:NotNull @param:JsonProperty("email") val email: String,
     @field:NotNull @param:JsonProperty("gender") val gender: Gender
 ) {
 
     override fun toString(): String {
-        return "Studenawdawdawdt{" +
-                "studentId=" + studentId +
+        return "Student{" +
+                "studentId=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
@@ -37,6 +37,4 @@ class Student(
     enum class Gender {
         MALE, FEMALE
     }
-
-    annotation class NotBlank
 }

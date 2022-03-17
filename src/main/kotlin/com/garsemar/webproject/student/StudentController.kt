@@ -1,11 +1,8 @@
 package com.garsemar.webproject.student
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+
 
 @RestController
 @RequestMapping(path = ["api/v1/student"])
@@ -22,5 +19,10 @@ class StudentController {
     @PostMapping
     fun registerNewStudent(@RequestBody student: Student){
         studentService.addNewStudent(student)
+    }
+
+    @DeleteMapping(path = ["{id}"])
+    fun deleteStudent(@PathVariable("id") id: Float?) {
+        studentService.deleteStudent(id!!)
     }
 }

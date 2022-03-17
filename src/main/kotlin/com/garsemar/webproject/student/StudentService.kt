@@ -2,6 +2,7 @@ package com.garsemar.webproject.student
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class StudentService {
@@ -14,7 +15,22 @@ class StudentService {
     }
 
     fun addNewStudent(student: Student) {
-        println(student)
+        val studentOptional: Optional<Student>? = studentRepository?.findUserByEmail(student.email)
+        if (studentOptional != null) {
+            if (studentOptional.isPresent) {
+                throw IllegalStateException("Email ${student.email} taken")
+            }
+        }
+        studentRepository?.save(student)
+    }
+
+    fun deleteStudent(id: Float) {
+        if (!studentRepository!!.existsById(id.toInt())) {
+            throw IllegalStateException(
+                "Student with id $id does not exists"
+            )
+        }
+        studentRepository.deleteById(id.toInt())
     }
 }
 
